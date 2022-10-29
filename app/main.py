@@ -1,13 +1,6 @@
-from typing import Optional, List
-from fastapi import Body, Depends, FastAPI, Response, status, HTTPException
-from numpy import deprecate
-from sqlalchemy.orm import Session
-from random import randrange
-import psycopg2
-from psycopg2.extras import RealDictCursor
-import time
-from . import models, schemas, utils
-from .database import SessionLocal, engine, get_db
+from fastapi import FastAPI
+from . import models
+from .database import engine
 from .routers import post, user, auth
 
 models.Base.metadata.create_all(bind=engine)
