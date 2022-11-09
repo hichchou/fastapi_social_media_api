@@ -6,8 +6,8 @@ from .database import engine
 from .routers import post, user, auth, vote
 from .config import settings
 
-#no longer needed, handled by alembic for generating tables
-#models.Base.metadata.create_all(bind=engine)
+# no longer needed, handled by alembic for generating tables
+# models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
@@ -17,7 +17,7 @@ app = FastAPI()
 #     "http://localhost:8080",
 #     "https://www.google.com"
 # ]
-#allow all domains (wild card)
+# allow all domains (wild card)
 origins = ["*"]
 
 app.add_middleware(
@@ -33,6 +33,7 @@ app.include_router(user.router)
 app.include_router(auth.router)
 app.include_router(vote.router)
 
+
 @app.get("/")
 async def root():
-    return {"message": "Hello World !!"}
+    return {"message": "Hello world !"}
