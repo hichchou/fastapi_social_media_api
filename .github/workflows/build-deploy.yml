@@ -78,20 +78,34 @@ jobs:
     needs: [build]
 
     steps:
-      #first deploy to heroku
-      #pull git repo
-      - name: pulling git repo
-        uses: actions/checkout@v2
-      #install heroku cli
-      #heroku login
-      #add git remote for heroku
-      #git push heroku main
-      # use github action, simpler
-      - name: deploying to Heroku
-        uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
-          heroku_email: ${{secrets.HEROKU_EMAIL}}
+      # #first deploy to heroku
+      # #pull git repo
+      # - name: pulling git repo
+      #   uses: actions/checkout@v2
+      # #install heroku cli
+      # #heroku login
+      # #add git remote for heroku
+      # #git push heroku main
+      # # use github action, simpler
+      # - name: deploying to Heroku
+      #   uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+      #   with:
+      #     heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+      #     heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
+      #     heroku_email: ${{secrets.HEROKU_EMAIL}}
 
-    #deploy to Ubuntu server on digitalocean
+      #deploy to Ubuntu server on digitalocean
+      #login to server
+      #cd /app/src
+      #git pull
+      #systemctl restart api
+      - name: deploy to ubuntu server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{secrets.PROD_HOST}}
+          username: ${{secrets.PROD_USERNAME}}
+          password: ${{secrets.PROD_PASSWORD}}
+          script: |
+            cd app/src
+            git pull
+            echo ${{secrets.PROD_PASSWORD}} | sudo -S systemctl restart api
