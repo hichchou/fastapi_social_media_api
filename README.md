@@ -5,9 +5,9 @@ Social media API using FastAPI
 - SQL database ORM with SQLAlchemy + Alembic database migration tool
 - Testing w/ pytest + CI/CD w/ Github Actions
 - Hosted on : 
-  - Heroku:
-  - DigitalOcean Ubuntu VM:
-  - Dockerized:
+  - Heroku: https://social-fastapi-hich.herokuapp.com/docs
+  - DigitalOcean Ubuntu VM: https://hichch.xyz/docs
+  - Dockerized: https://hub.docker.com/r/hichchou/fastapi_social
   
 Run with command line:
 uvicorn app.main:app --reload
